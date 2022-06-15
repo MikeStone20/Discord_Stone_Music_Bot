@@ -1,6 +1,5 @@
 import string
 
-
 class Music_Bot:
 
     def __init__(self):
