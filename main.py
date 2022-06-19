@@ -58,4 +58,4 @@ async def play(ctx, *song):
 #             discord_bot.__add__(command_and_args[1])
 #         next_song = discord_bot.get_next_song
         
-bot.run('OTg2NDA4MDg5Mzk1NzkzOTcy.GY59QV.2Iuul3tKJI7X-2Zfpuv3hKBPpRzjWvQB0GDNKI')
+bot.run(os.getenv('DISCORD_TOKEN'))
