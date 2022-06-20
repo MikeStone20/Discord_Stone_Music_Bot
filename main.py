@@ -1,7 +1,8 @@
 from dis import disco
 import discord
 from discord.ext import commands
-#import youtube_dl
+import youtube_dl
+from youtube_dl import YoutubeDL
 import os
 from music_bot import Music_Bot
 
@@ -23,7 +24,13 @@ async def hello(ctx, *message):
 @bot.command()
 async def play(ctx, *song):
 
+    #Find the callers VC if there is None, and bot isn't in another channel Return
     channel = ctx.author.voice.channel
+    print(bot.voice_clients)
+    if channel is None and bot.voice_client() is None:
+        await ctx.send('Please join a voice channel ^_^');
+        return
+
     bot_channel_exist = False if ctx.voice_client == None else True
 
     vc = []
@@ -31,9 +38,10 @@ async def play(ctx, *song):
     if(not bot_channel_exist):
        vc = await channel.connect()
    
+    print(bot.voice_clients)
     if len(song) > 0:
         discord_bot.__add__(song[0])
-    vc.play(discord.FFmpegPCMAudio(executable="C:\\Users\\micha\\Desktop\\ffmpeg\\bin", source='C:\\Users\\micha\\Desktop\\imagine_dragons.mp3'))
+    #vc.play(discord.FFmpegPCMAudio(source='./imagine_dragons.mp3'))
     #current_song = discord_bot.get_current_song()
     #bot.play(current_song.file_location)
   
