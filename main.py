@@ -40,7 +40,7 @@ async def play(ctx, *song):
    
     print(bot.voice_clients)
     if len(song) > 0:
-        discord_bot.__add__(song[0])
+        music_options = discord_bot.fetch_link_options(song[0])
     #vc.play(discord.FFmpegPCMAudio(source='./imagine_dragons.mp3'))
     #current_song = discord_bot.get_current_song()
     #bot.play(current_song.file_location)

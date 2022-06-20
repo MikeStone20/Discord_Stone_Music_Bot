@@ -1,4 +1,8 @@
 import string
+from requests import get
+from youtube_dl import YoutubeDL
+
+__YOUTUBE_SEARCH_CONFIGS__ = {'format': 'bestaudio', 'noplaylist': 'True'}
 
 class Music_Bot:
 
@@ -57,3 +61,19 @@ class Music_Bot:
     '''
     def __get_song__(self, name):
         pass
+
+    '''
+    Given a song name. Return dict of song options
+    '''
+    def fetch_link_options(song_name : str) -> dict:
+        with YoutubeDL(__YOUTUBE_SEARCH_CONFIGS__) as ydl:
+            try:
+                get(song_name)
+            except:
+                song_results = ydl.extract_info(f"ytsearch:{song_name}", downnload=False)
+            else:
+                song_results = ydl.extract_info(song_name, download=False)
+
+        print(song_results)
+        return song_results
+
